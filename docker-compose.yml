@@ -1,0 +1,13 @@
+db:
+  image: mysql
+  ports:
+    - "3306:3306"
+  expose:
+    - "3306"
+  environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: loja
+      MYSQL_USER: loja
+      MYSQL_PASSWORD: loja
+  volumes:
+    - ./mysql-volume:/var/lib/mysql
