@@ -1,0 +1,2 @@
+INSERT INTO `info_fornecedor`(`endereco`, `estado`, `nome`) VALUES ('Rua XPTO abc', 'MG', 'Thiago Resende Softwares');INSERT INTO `info_fornecedor`(`endereco`, `estado`, `nome`) VALUES ('Rua XPTO abc', 'MG', 'Thiago Resende Softwares');
+INSERT INTO `info_fornecedor`(`endereco`, `estado`, `nome`) VALUES ('Rua XPTO abc', 'MG', 'Thiago Resende Softwares');INSERT INTO `info_fornecedor`(`endereco`, `estado`, `nome`) VALUES ('Rua um 323', 'GO', 'GO Softwares');
