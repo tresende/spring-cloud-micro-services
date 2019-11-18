@@ -1,5 +1,7 @@
 package br.com.thiagoresende.loja.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -11,10 +13,13 @@ import br.com.thiagoresende.loja.controller.dto.InfoFornecedorDTO;
 @Service
 public class CompraService {
 
+	@Autowired
+	@LoadBalanced
+	private RestTemplate client;
+
 	public void realizaCompra(CompraDTO compra) {
 
-		RestTemplate client = new RestTemplate();
-		String url = "http://localhost:8081/info/" + compra.getEndereco().getEstado();
+		String url = "http://fornecedor/info/" + compra.getEndereco().getEstado();
 		System.out.println(url);
 		ResponseEntity<InfoFornecedorDTO> exchange = client.exchange(url, HttpMethod.GET, null,
 				InfoFornecedorDTO.class);
