@@ -1,4 +1,4 @@
-package br.com.thiagoresende.loja.controller.dto;
+package br.com.thiagoresende.loja.dto;
 
 public class EnderecoDTO {
 	private String rua;
@@ -27,6 +27,11 @@ public class EnderecoDTO {
 
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+
+	@Override
+	public String toString() {
+		return "Estado " + estado + ",  Rua " + rua + " " + numero;
 	}
 
 }

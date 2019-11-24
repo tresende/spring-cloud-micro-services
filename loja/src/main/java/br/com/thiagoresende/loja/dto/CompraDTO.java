@@ -1,4 +1,4 @@
-package br.com.thiagoresende.loja.controller.dto;
+package br.com.thiagoresende.loja.dto;
 
 import java.util.List;
 

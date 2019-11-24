@@ -1,4 +1,4 @@
-package br.com.thiagoresende.loja.controller.dto;
+package br.com.thiagoresende.loja.dto;
 
 public class InfoFornecedorDTO {
 	private String endereco;
