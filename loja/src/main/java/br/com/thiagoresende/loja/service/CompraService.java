@@ -1,5 +1,7 @@
 package br.com.thiagoresende.loja.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +17,17 @@ public class CompraService {
 	@Autowired
 	private FornecedorClient fornecedorClient;
 
+	@Autowired
+	private static final Logger LOG = LoggerFactory.getLogger(CompraService.class);
+
 	public Compra realizaCompra(CompraDTO compra) {
 
-		InfoFornecedorDTO info = fornecedorClient.getInfoPorEstado(compra.getEndereco().getEstado());
+		String estado = compra.getEndereco().getEstado();
+		LOG.info("Buscando fornecedor de " + estado);
+		InfoFornecedorDTO info = fornecedorClient.getInfoPorEstado(estado);
+		LOG.info("Info " + info);
 		InfoPedidoDTO pedido = fornecedorClient.realizaPedido(compra.getItens());
-		System.out.println(info.getEndereco());
-
+		LOG.info("Realizando pedido " + pedido);
 		Compra compraSalva = new Compra();
 		compraSalva.setPedidoId(pedido.getId());
 		compraSalva.setTempoDePreparo(pedido.getTempoDePreparo());
