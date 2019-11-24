@@ -12,7 +12,7 @@ services:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=app_development
   app:
-    image: phpmyadmin/phpmyadmin:latest
+    image: phpmyadmin/phpmyadmin
     links:
       - db
     ports:
