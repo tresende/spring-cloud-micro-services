@@ -1,5 +1,6 @@
 package br.com.alura.microservice.loja.service;
 
+import br.com.alura.microservice.loja.repository.CompraRepository;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,11 @@ public class CompraService {
     @Autowired
     private FornecedorClient fornecedorClient;
 
-    @HystrixCommand(fallbackMethod = "realizaCompraFallback")
+    @Autowired
+    private CompraRepository compraRepository;
+
+
+    @HystrixCommand(fallbackMethod = "realizaCompraFallback", threadPoolKey = "realizaCompraThreadPool")
     public Compra realizaCompra(CompraDTO compra) {
 
         final String estado = compra.getEndereco().getEstado();
@@ -30,6 +35,7 @@ public class CompraService {
         compraSalva.setTempoDePreparo(infoPedido.getTempoDePreparo());
         compraSalva.setEnderecoDestino(info.getEndereco());
 
+        compraRepository.save(compraSalva);
         /*
         try {
             Thread.sleep(2000);
@@ -49,4 +55,8 @@ public class CompraService {
         return compraFallback;
     }
 
+    @HystrixCommand(threadPoolKey = "getByIdThreadPool")
+    public Compra getById(Long id) {
+        return compraRepository.findById(id).orElse(new Compra());
+    }
 }
