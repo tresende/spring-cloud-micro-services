@@ -30,5 +30,4 @@ public class EntregaService {
 		voucher.setPrevisaoParaEntrega(entrega.getPrevisaoParaEntrega());
 		return voucher;
 	}
-
 }
